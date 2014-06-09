@@ -3,9 +3,12 @@ package com.example.originalaso_2014_002;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity  implements View.OnClickListener{
 
+	public void onClick(View v) {
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
