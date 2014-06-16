@@ -52,7 +52,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 
 	public void insertHitokoto(SQLiteDatabase db, String inputMsg) {
-		String sqlstr = "INSERT INTO Hitokoto(phrase) values('" + inputMsg+ "');";
+		String sqlstr = "INSERT INTO Hitokoto(phrase) values('" + inputMsg
+				+ "');";
 
 		try {
 			db.beginTransaction();
@@ -64,6 +65,20 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 			db.endTransaction();
 		}
 		return;
+	}
+
+	public void deleteHitokoto(SQLiteDatabase db, int id) {
+		String sqlstr = "DELETE FROM Hitokoto WHERE _id = " + id + ";";
+
+		try {
+			db.beginTransaction();
+			db.execSQL(sqlstr);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			Log.e("でりーとえらー", e.toString());
+		} finally {
+			db.endTransaction();
+		}
 	}
 
 	public String selectRamdomHitokoto(SQLiteDatabase db) {
@@ -84,6 +99,25 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 		}
 		return rtString;
+	}
+
+	public SQLiteCursor selectHitokotoList(SQLiteDatabase db) {
+		SQLiteCursor cursor = null;
+		String sqlstr = "SELECT _id,phrase FROM Hitokoto ORDER BY _id;";
+		try {
+			cursor = (SQLiteCursor)db.rawQuery(sqlstr,null);
+
+			if(cursor.getCount()!=0){
+				cursor.moveToFirst();
+			}
+
+		} catch (SQLException e) {
+			Log.e("カーソル取得えらー", e.toString());
+		} finally {
+
+		}
+
+		return null;
 	}
 
 }

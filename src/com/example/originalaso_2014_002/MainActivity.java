@@ -23,18 +23,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		switch (v.getId()) {
 		case R.id.checkButton:
 			String strHitokoto = helper.selectRamdomHitokoto(sdb);
-
-			Log.d("いべんと発生！", "でばっぐ");
 			intent = new Intent(MainActivity.this, HitokotoActivity.class);
-
 			intent.putExtra("hitokoto", strHitokoto);
 			startActivity(intent);
 			break;
 
 		case R.id.maintenanceButton:
-
-			String aaa = helper.selectRamdomHitokoto(sdb);
-			Log.d("いべんと発生！", aaa);
+			intent = new Intent(MainActivity.this, MaintenanceActivity.class);
+			startActivity(intent);
 			break;
 
 		case R.id.ragistrationButton:
@@ -43,11 +39,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 			if(inputMsg!=null && !inputMsg.isEmpty()){
 				helper.insertHitokoto(sdb, inputMsg);
-				Log.d("いべんと発生！", "いんさーと成功？");
 			}else{
-				Log.d("いべんと","インサート失敗？");
 			}
-			Log.d("いべんと発生！", inputMsg);
 
 			etv.setText("");
 			break;

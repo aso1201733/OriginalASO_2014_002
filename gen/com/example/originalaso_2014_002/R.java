@@ -30,10 +30,10 @@ public final class R {
         public static final int checkButton=0x7f080006;
         public static final int deleteButton=0x7f080009;
         public static final int hitokotoDisplay=0x7f080001;
+        public static final int hitokotoList=0x7f080008;
         public static final int hitokotoText=0x7f080003;
         public static final int imageView1=0x7f080007;
         public static final int linearLayout1=0x7f080000;
-        public static final int listView1=0x7f080008;
         public static final int maintenanceButton=0x7f080004;
         public static final int ragistrationButton=0x7f080005;
         public static final int textView1=0x7f080002;
