@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
@@ -23,14 +22,34 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.checkButton:
+			String strHitokoto = helper.selectRamdomHitokoto(sdb);
+
 			Log.d("いべんと発生！", "でばっぐ");
 			intent = new Intent(MainActivity.this, HitokotoActivity.class);
 
-			intent.putExtra("hitokoto", "おくるあたい");
+			intent.putExtra("hitokoto", strHitokoto);
 			startActivity(intent);
 			break;
 
 		case R.id.maintenanceButton:
+
+			String aaa = helper.selectRamdomHitokoto(sdb);
+			Log.d("いべんと発生！", aaa);
+			break;
+
+		case R.id.ragistrationButton:
+			EditText etv = (EditText)findViewById(R.id.hitokotoText);
+			String inputMsg = etv.getText().toString();
+
+			if(inputMsg!=null && !inputMsg.isEmpty()){
+				helper.insertHitokoto(sdb, inputMsg);
+				Log.d("いべんと発生！", "いんさーと成功？");
+			}else{
+				Log.d("いべんと","インサート失敗？");
+			}
+			Log.d("いべんと発生！", inputMsg);
+
+			etv.setText("");
 			break;
 		}
 
@@ -54,6 +73,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 		Button ragistrationButton = (Button) findViewById(R.id.ragistrationButton);
 		ragistrationButton.setOnClickListener(this);
+
+		if(sdb == null){
+			helper = new MySQLiteOpenHelper(getApplicationContext());
+		}
+		try{
+			sdb = helper.getWritableDatabase();
+		}catch(SQLiteException e){
+			return;
+		}
 	}
 
 	@Override
