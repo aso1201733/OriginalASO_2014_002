@@ -52,16 +52,24 @@ AdapterView.OnItemClickListener,View.OnClickListener {
 
 	}
 
+
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+
+
+
 	private void setDBValuetoList(ListView listHitokoto){
 
 		SQLiteCursor cursor = null;
 
 		if(sdb == null){
 			helper = new MySQLiteOpenHelper(getApplicationContext());
-		}
-
-		onItemClick(AdapterView ab, View bcv, int cd, long de){
-
 		}
 
 		try{
@@ -79,4 +87,5 @@ AdapterView.OnItemClickListener,View.OnClickListener {
 
 		listHitokoto.setAdapter(adapter);
 	}
+
 }
