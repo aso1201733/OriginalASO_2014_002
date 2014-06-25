@@ -117,7 +117,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 		}
 
-		return null;
+		return cursor;
 	}
 
 }
